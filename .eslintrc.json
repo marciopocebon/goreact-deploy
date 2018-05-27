@@ -15,6 +15,14 @@
     ],
     "global-require": "off",
     "import/prefer-default-export": "off",
-    "no-unused-expressions": ["error", { "allowTaggedTemplates": true }]
+    "no-unused-expressions": ["error", { "allowTaggedTemplates": true }],
+    "jsx-a11y/anchor-is-valid": [
+      "error",
+      {
+        "components": ["Link"],
+        "specialLink": ["to", "hrefLeft", "hrefRight"],
+        "aspects": ["noHref", "invalidHref", "preferButton"]
+      }
+    ]
   }
 }

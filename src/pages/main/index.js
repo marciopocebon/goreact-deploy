@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
@@ -10,12 +10,6 @@ class Main extends Component {
     addFavoriteRequest: PropTypes.func.isRequired,
     favorites: PropTypes.shape({
       loading: PropTypes.bool,
-      data: PropTypes.arrayOf(PropTypes.shape({
-        id: PropTypes.number,
-        name: PropTypes.string,
-        description: PropTypes.string,
-        url: PropTypes.string,
-      })),
       error: PropTypes.string,
     }).isRequired,
   };
@@ -34,33 +28,20 @@ class Main extends Component {
 
   render() {
     return (
-      <Fragment>
-        <form onSubmit={this.handleAddRepository}>
-          <input
-            placeholder="usuário/repositório"
-            value={this.state.repositoryInput}
-            onChange={e => this.setState({ repositoryInput: e.target.value })}
-          />
+      <form onSubmit={this.handleAddRepository}>
+        <input
+          placeholder="usuário/repositório"
+          value={this.state.repositoryInput}
+          onChange={e => this.setState({ repositoryInput: e.target.value })}
+        />
 
-          <button type="submit">Adicionar</button>
+        <button type="submit">Adicionar</button>
 
-          {this.props.favorites.loading && <span>Carregando...</span>}
-          {!!this.props.favorites.error && (
-            <span style={{ color: '#F00' }}>{this.props.favorites.error}</span>
-          )}
-        </form>
-
-        <ul>
-          {this.props.favorites.data.map(favorite => (
-            <li key={favorite.id}>
-              <p>
-                <strong>{favorite.name}</strong> ({favorite.description})
-              </p>
-              <a href={favorite.url}>Acessar</a>
-            </li>
-          ))}
-        </ul>
-      </Fragment>
+        {this.props.favorites.loading && <span>Carregando...</span>}
+        {!!this.props.favorites.error && (
+          <span style={{ color: '#F00' }}>{this.props.favorites.error}</span>
+        )}
+      </form>
     );
   }
 }
